@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Readme Client</title>
+
+  <!-- Import Coolvetica Font -->
+  <style>
+    @font-face {
+      font-family: 'Coolvetica';
+      src: url('Coolvetica.otf') format('opentype');
+    }
+
+    /* RESET */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html,body {
+      width:100%;
+      min-height:100vh;
+      font-family:'Coolvetica',sans-serif;
+      color:#fff;
+      background:#000;
+      overflow-x:hidden;
+      scroll-behavior:smooth;
+    }
+
+    /* THEME COLORS */
+    :root{
+      --skin:#f2c6a0; /* soft skin tone */
+      --skin-dark:#d4a580;
+      --black:#000;
+    }
+
+    /* GRADIENT BACKGROUND */
+    body::before{
+      content:"";
+      position:fixed;inset:0;
+      background:radial-gradient(circle at top left,var(--skin)0%,var(--skin-dark)30%,var(--black)80%);
+      animation:bgShift 20s ease-in-out infinite alternate;
+      z-index:-2;
+    }
+    @keyframes bgShift{
+      0%{transform:scale(1) rotate(0deg);}100%{transform:scale(1.2) rotate(10deg);} }
+
+    /* FROSTED GLASS CARD */
+    .card{
+      background:rgba(0,0,0,.55);
+      backdrop-filter:blur(25px) saturate(120%);
+      -webkit-backdrop-filter:blur(25px) saturate(120%);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:24px;
+      box-shadow:0 10px 25px rgba(0,0,0,.6);
+    }
+
+    /* HEADER */
+    header{padding:60px 20px 30px;text-align:center;}
+    header h1{font-size:3.5rem;letter-spacing:4px;background:linear-gradient(90deg,var(--skin),#fff);-webkit-background-clip:text;color:transparent;animation:fadeSlide 1s ease forwards;opacity:0;}
+
+    /* NAV */
+    nav{display:flex;justify-content:center;gap:24px;flex-wrap:wrap;margin-bottom:40px;opacity:0;animation:fadeSlide 1.2s .2s forwards;}
+    nav a{position:relative;padding:12px 28px;font-size:1rem;text-decoration:none;color:#fff;overflow:hidden;transition:.3s;}
+    nav a::before{content:"";position:absolute;inset:0;background:var(--skin);transform:scaleX(0);transform-origin:left;transition:.3s;z-index:-1;}
+    nav a:hover::before{transform:scaleX(1);}nav a:hover{color:#000;}
+
+    /* MAIN LAYOUT */
+    main{width:clamp(280px,90%,900px);margin-inline:auto;display:grid;gap:40px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));padding-bottom:80px;}
+
+    section{padding:32px 28px;transform:translateY(30px);opacity:0;animation:fadeSlide 1s forwards;} 
+    section:nth-of-type(1){animation-delay:.4s;}section:nth-of-type(2){animation-delay:.6s;}
+
+    @keyframes fadeSlide{to{transform:translateY(0);opacity:1;}}
+
+    section h2{font-size:1.8rem;margin-bottom:16px;color:var(--skin);} 
+    section p{font-size:1.05rem;line-height:1.7;color:#ddd;}
+
+    /* BUTTONS */
+    .btn{display:inline-block;margin-top:24px;padding:14px 36px;font-size:1.1rem;font-weight:600;border:none;border-radius:18px;background:var(--skin-dark);color:#000;cursor:pointer;transition:.3s;box-shadow:0 4px 14px rgba(0,0,0,.4);}
+    .btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.6);} 
+
+    /* LINKS GRID */
+    .links-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:20px;margin-top:20px;}
+    .link-card{padding:18px;text-align:center;border-radius:16px;background:rgba(255,255,255,.05);transition:.3s;}
+    .link-card:hover{background:var(--skin);color:#000;transform:translateY(-3px);} 
+
+    /* FOOTER */
+    footer{padding:40px 20px;text-align:center;font-size:.9rem;color:#aaa;}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Readme Client</h1>
+  </header>
+
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#news">News</a>
+    <a href="#links">Links</a>
+  </nav>
+
+  <main id="home">
+    <!-- WELCOME CARD -->
+    <section class="card">
+      <h2>Welcome to Readme</h2>
+      <p>Readme Client is a smooth utility client for Minecraft Bedrock Edition, fully optimised for mobile with a sleek aesthetic.</p>
+      <button class="btn" onclick="window.location.href='https://youtu.be/5yXdpVCmTGc?si=o4tcKlzFY7bv-2EP'">Download</button>
+    </section>
+
+    <!-- NEWS CARD -->
+    <section class="card" id="news">
+      <h2>Latest News</h2>
+      <p>New addition: Readme launcher, in‑built mod installer, and cosmetic store. Keep your Readme experience fresh and powerful!</p>
+      <button class="btn" id="changelogBtn">View Changelog</button>
+    </section>
+
+    <!-- CHANGELOG CARD (hidden) -->
+    <section class="card" id="changelog" style="display:none;">
+      <h2>Changelog</h2>
+      <p>Version 1.0.0 — April 25, 2025</p>
+      <ul>
+        <li>Improved mod menu</li>
+        <li>Added launcher</li>
+        <li>Enhanced website UI</li>
+        <li>Built‑in furry</li>
+        <li>Cosmetic store</li>
+        <li>200+ new features</li>
+      </ul>
+    </section>
+
+    <!-- LINKS CARD -->
+    <section class="card" id="links">
+      <h2>Useful Links</h2>
+      <div class="links-grid">
+        <a class="link-card" href="https://discord.gg/fc4dUrVjy3" target="_blank">Discord</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>&copy; 2025 Readme Client. All rights reserved.</footer>
+
+  <script>
+    // reveal changelog toggle
+    document.getElementById('changelogBtn').addEventListener('click',()=>{
+      const c=document.getElementById('changelog');
+      c.style.display=c.style.display==='none'? 'block':'none';
+      c.scrollIntoView({behavior:'smooth'});
+    });
+  </script>
+</body>
+</html>
